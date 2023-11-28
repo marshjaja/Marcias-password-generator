@@ -124,7 +124,34 @@ function getRandom(arr) {
 }
 
 // Function to generate password with user input
-function generatePassword() {}
+function generatePassword() {
+	var pwdOptions = getPasswordOptions();
+
+	if (pwdOptions === null) {
+		// Return an empty string or handle the case appropriately
+		return "";
+	}
+
+	var allCharacters = [];
+	var result = [];
+	if (pwdOptions.isLowerCase) {
+		allCharacters = allCharacters.concat(lowerCasedCharacters);
+	}
+	if (pwdOptions.isUpperCase) {
+		allCharacters = allCharacters.concat(upperCasedCharacters);
+	}
+	if (pwdOptions.isSpecialCharacter) {
+		allCharacters = allCharacters.concat(specialCharacters);
+	}
+	if (pwdOptions.isNumber) {
+		allCharacters = allCharacters.concat(numericCharacters);
+	}
+	for (var i = 0; i < pwdOptions.getLength; i++) {
+		result.push(getRandom(allCharacters));
+	}
+
+	return result.join("");
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
