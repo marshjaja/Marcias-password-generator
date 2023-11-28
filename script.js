@@ -89,7 +89,33 @@ var upperCasedCharacters = [
 ];
 
 // Function to prompt user for password options
-function getPasswordOptions() {}
+function getPasswordOptions() {
+	let getLength = parseInt(prompt("Please select a number between 8 and 128"));
+	if (isNaN(getLength) || getLength < 8 || getLength > 128) {
+		alert("Please enter a valid number between 8 and 128");
+		return null;
+	}
+	let isLowerCase = confirm("Would you like to include lower case characters");
+	let isUpperCase = confirm("Would you like to include upper case characters");
+	let isNumber = confirm("Would you like to include numbers");
+	let isSpecialCharacter = confirm(
+		"Would you like to include special characters"
+	);
+
+	if (!isLowerCase && !isUpperCase && !isNumber && !isSpecialCharacter) {
+		alert("Please choose at least one character type");
+		return null;
+	}
+
+	let userOptions = {
+		getLength: getLength,
+		isLowerCase: isLowerCase,
+		isUpperCase: isUpperCase,
+		isNumber: isNumber,
+		isSpecialCharacter: isSpecialCharacter,
+	};
+	return userOptions;
+}
 
 // Function for getting a random element from an array
 function getRandom(arr) {}
